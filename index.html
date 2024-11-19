@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <link rel="stylesheet" href="quiz.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-database.js"></script>
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: azure;  
+}
+.container {
+    width: 100%;
+}
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    margin:60px auto 0 auto ;
+    border: 1px solid rgba(255, 255, 255, .5) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: -2px 3px 4px rgba(27, 27, 27, 0.616);
+}
+.wrapper .login-box {
+    width: 100%;
+    padding: 40px;
+}
+.login-box h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+.login-box .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid black;
+    margin:30px 0 ;
+}
+.icon {
+    position: absolute;
+    right: 0;
+    line-height: 57px;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background:transparent;
+    border: none;
+    outline: none;
+    padding: 0px 35px 0 5px;
+    color: rgb(201, 199, 199);
+}
+.input-box input::placeholder {
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+.wrapper a {
+    text-decoration: none;
+    color: #06101a;
+}
+.wrapper a:hover {
+    text-decoration: underline;
+}
+.login-btn button {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    background-color: #112130;
+}
+.login-btn button:active {
+    background-color: #0a141f;
+}
+.register {
+    text-align: center;
+}
+@media (max-width: 730px ){
+    body {
+        background-image: url('https://tse4.mm.bing.net/th?id=OIP.Se-cwvwgYXdwTyG-y3-iywHaEK&pid=Api&P=0&h=220');
+        background-size: cover;
+        background-attachment: fixed;
+        
+    
+    }
+    .wrapper {
+        position: relative;
+        width: 300px;
+        height: 440px;
+        margin:80px auto 0 auto ;
+        border: 1px solid rgba(255, 255, 255, .5) ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        backdrop-filter: blur(20px);
+        border-radius: 10px;
+    }
+.nav-logo {
+   margin-left: 5px;
+   font-size: 16px;    
+}
+.nav-bar ul {
+    display: none;
+}
+.remember-forget {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+.nav-items button {
+    margin-right: 10px;
+}    
+}
+</style>
+<body onload="Next()">
+    <div class="container">
+        <h1 style="font-size: 30px; text-align: center; font-weight: bold; font-size: 30px; margin-bottom: 30px;">Quiz Question</h1>
+        
+        <div  class="main" style="text-align: center; "><h3 id="quesCount">Question</h3> <span id="currentQueCount"></span> <span style="font-size: 14px;" >/</span> <span style="font-size: 14px;" id="totalQueCount"></span></div>
+        
+        <div style="text-align: center;">
+            <p id="ques" style="margin-top: 10px; margin-bottom: 30px; font-size: 20px;"></p>
+            
+            <input class="options"t onclick="clicked()" type="radio" value="1"  name="options" id="">
+            <label id="opt1" style="margin-top: 10px; font-size: 20px;"></label>
+            <br>
+            <br>
+            
+            <input class="options"t onclick="clicked()" type="radio" value="2" name="options" id="">
+            <label id="opt2" style="margin-top: 10px; font-size: 20px;"></label>
+            
+            <br>
+            <br>
+            
+            <input class="options" onclick="clicked()" type="radio" value="3" name="options" id="">
+            <label id="opt3" style="margin-top: 10px; font-size: 20px;"></label>
+            
+            <br>
+            <br>
+            
+            <button disabled id="btn" onclick="Next()">Next</button>
+        </div>
+    </div>
+        
+</body>
+<script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
